@@ -34,3 +34,13 @@ class PostsViewSet(viewsets.ModelViewSet):
         PostsHandler().upvote(input_entity.post_id, self.request.user)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=["post"], detail=False, permission_classes=[permissions.IsAuthenticated])
+    def downvote(self, request):
+        serializer = VotePostInputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        input_entity = serializer.save()
+
+        PostsHandler().downvote(input_entity.post_id, self.request.user)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

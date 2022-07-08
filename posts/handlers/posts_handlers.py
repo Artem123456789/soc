@@ -25,3 +25,16 @@ class PostsHandler:
 
         new_upvote = Upvote(user=user, post=post)
         new_upvote.save()
+
+    def downvote(self, post_id: int, user: User):
+        post = Post.objects.get(id=post_id)
+        user_downvote = Downvote.objects.filter(user=user, post=post)
+        if len(user_downvote) > 0:
+            raise Exception("User already is downvoted")
+
+        user_upvote = Upvote.objects.filter(user=user, post=post)
+        if len(user_upvote) > 0:
+            user_upvote.delete()
+
+        new_downvote = Downvote(user=user, post=post)
+        new_downvote.save()
