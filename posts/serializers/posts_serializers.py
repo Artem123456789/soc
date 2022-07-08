@@ -8,7 +8,7 @@ from posts.models import Post
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ["id", "header", "text", "image", "creator"]
+        fields = ["id", "header", "text", "image", "creator", "upvotes", "downvotes"]
 
 
 class VotePostInputSerializer(BaseSerializer):
