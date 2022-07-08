@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from posts.entities.posts_entites import VotePostInputEntity
+from soc_media.serializers import BaseSerializer
 
 from posts.models import Post
 
@@ -10,8 +11,8 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ["id", "header", "text", "image", "creator"]
 
 
-class VotePostInputSerializer(serializers.HyperlinkedModelSerializer):
+class VotePostInputSerializer(BaseSerializer):
     post_id = serializers.IntegerField()
 
-    def save(self, **kwargs):
-        return VotePostInputEntity(**kwargs)
+    def create(self, validated_data: dict) -> VotePostInputEntity:
+        return VotePostInputEntity(**validated_data)
