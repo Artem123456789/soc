@@ -30,3 +30,10 @@ class Upvote(models.Model):
 class Downvote(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+class Comment(models.Model):
+    text = models.TextField(default="", null=False)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
