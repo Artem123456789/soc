@@ -4,6 +4,5 @@ from registration.views.registration_views import RegistrationViewSet
 app_name = "registration"
 
 router = routers.DefaultRouter()
-router.register("registration", RegistrationViewSet)
-
+router.register("registration", RegistrationViewSet, basename="registration")
 urlpatterns = router.urls
