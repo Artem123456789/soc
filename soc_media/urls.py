@@ -21,7 +21,8 @@ from soc_media import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("posts/", include("posts.urls", namespace="posts")),
-    path("registration/", include("registration.urls", namespace="registration"))
+    path("registration/", include("registration.urls", namespace="registration")),
+    path("comments/", include("comments.urls", namespace="comments"))
 ]
 
 if settings.DEBUG:
