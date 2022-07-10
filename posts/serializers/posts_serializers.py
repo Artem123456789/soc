@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from posts.entities.posts_entites import VotePostInputEntity, CommentInputEntity
+from posts.entities.posts_entites import VotePostInputEntity
 from soc_media.serializers import BaseSerializer
 
 from posts.models import Post

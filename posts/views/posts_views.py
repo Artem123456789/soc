@@ -7,7 +7,7 @@ from rest_framework import permissions
 from posts.handlers.posts_handlers import PostsHandler
 from posts.models import Post
 from posts.serializers.posts_serializers import PostSerializer
-from posts.serializers.posts_serializers import VotePostInputSerializer, CommentInputSerializer
+from posts.serializers.posts_serializers import VotePostInputSerializer
 from posts.permissions import IsCreatorPermission
 
 

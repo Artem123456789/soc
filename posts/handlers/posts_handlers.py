@@ -1,7 +1,6 @@
 import os
 
-from posts.models import Post, Upvote, Downvote, Comment
-from posts.entities.posts_entites import CommentInputEntity
+from posts.models import Post, Upvote, Downvote
 from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
 
