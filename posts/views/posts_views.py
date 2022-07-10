@@ -38,13 +38,3 @@ class PostsViewSet(viewsets.ModelViewSet):
         PostsHandler().downvote(input_entity.post_id, self.request.user)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @action(methods=["post"], detail=False, permission_classes=[permissions.IsAuthenticated])
-    def comment(self, request):
-        serializer = CommentInputSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        input_entity = serializer.save()
-
-        PostsHandler().comment(input_entity, self.request.user)
-
-        return Response(status=status.HTTP_201_CREATED)

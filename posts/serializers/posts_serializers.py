@@ -16,11 +16,3 @@ class VotePostInputSerializer(BaseSerializer):
 
     def create(self, validated_data: dict) -> VotePostInputEntity:
         return VotePostInputEntity(**validated_data)
-
-
-class CommentInputSerializer(BaseSerializer):
-    text = serializers.CharField(max_length=1000)
-    post_id = serializers.IntegerField()
-
-    def create(self, validated_data: dict) -> CommentInputEntity:
-        return CommentInputEntity(**validated_data)

@@ -35,9 +35,3 @@ class PostsHandler:
 
         new_downvote = Downvote(user=user, post=post)
         new_downvote.save()
-
-    def comment(self, input_entity: CommentInputEntity, user: User):
-        comment = Comment(text=input_entity.text,
-                          post=Post.objects.get(id=input_entity.post_id),
-                          user=user)
-        comment.save()
