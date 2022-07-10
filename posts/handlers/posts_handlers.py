@@ -1,7 +1,7 @@
 import os
 
 from posts.models import Post, Upvote, Downvote
-from posts.serializers.posts_serializers import VotePostInputEntity
+from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -17,7 +17,7 @@ class PostsHandler:
         post = Post.objects.get(id=post_id)
         user_upvote = Upvote.objects.filter(user=user, post=post)
         if len(user_upvote) > 0:
-            raise Exception("User already is upvoted")
+            raise APIException("User already is upvoted")
 
         user_downvote = Downvote.objects.filter(user=user, post=post)
         if len(user_downvote) > 0:
@@ -30,7 +30,7 @@ class PostsHandler:
         post = Post.objects.get(id=post_id)
         user_downvote = Downvote.objects.filter(user=user, post=post)
         if len(user_downvote) > 0:
-            raise Exception("User already is downvoted")
+            raise APIException("User already is downvoted")
 
         user_upvote = Upvote.objects.filter(user=user, post=post)
         if len(user_upvote) > 0:
