@@ -9,5 +9,4 @@ class VotePostInputEntity:
 @dataclass
 class CommentInputEntity:
     text: str
-    user_id: int
     post_id: int

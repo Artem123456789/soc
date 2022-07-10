@@ -20,7 +20,6 @@ class VotePostInputSerializer(BaseSerializer):
 
 class CommentInputSerializer(BaseSerializer):
     text = serializers.CharField(max_length=1000)
-    user_id = serializers.IntegerField()
     post_id = serializers.IntegerField()
 
     def create(self, validated_data: dict) -> CommentInputEntity:
