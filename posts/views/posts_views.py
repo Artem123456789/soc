@@ -19,14 +19,6 @@ class PostsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
 
-    def update(self, request, *args, **kwargs):
-        PostsHandler().delete_image(int(kwargs.get("pk")))
-        return super().update(request, *args, **kwargs)
-
-    def destroy(self, request, *args, **kwargs):
-        PostsHandler().delete_image(int(kwargs.get("pk")))
-        return super().destroy(request, *args, **kwargs)
-
     @action(methods=["post"], detail=False, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request):
         serializer = VotePostInputSerializer(data=request.data)
