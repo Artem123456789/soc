@@ -8,11 +8,13 @@ from posts.handlers.posts_handlers import PostsHandler
 from posts.models import Post
 from posts.serializers.posts_serializers import PostSerializer
 from posts.serializers.posts_serializers import VotePostInputSerializer
+from posts.permissions import IsCreatorPermission
 
 
 class PostsViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [IsCreatorPermission]
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
