@@ -45,6 +45,6 @@ class PostsViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         input_entity = serializer.save()
 
-        PostsHandler.comment(input_entity, self.request.user)
+        PostsHandler().comment(input_entity, self.request.user)
 
         return Response(status=status.HTTP_201_CREATED)
