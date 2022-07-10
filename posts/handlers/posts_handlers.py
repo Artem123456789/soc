@@ -1,6 +1,7 @@
 import os
 
-from posts.models import Post, Upvote, Downvote
+from posts.models import Post, Upvote, Downvote, Comment
+from posts.entities.posts_entites import CommentInputEntity
 from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
 
@@ -34,3 +35,9 @@ class PostsHandler:
 
         new_downvote = Downvote(user=user, post=post)
         new_downvote.save()
+
+    def comment(self, input_entity: CommentInputEntity):
+        comment = Comment(text=input_entity.text,
+                          post=Post.objects.get(id=input_entity.post_id),
+                          user=User.objects.get(id=input_entity.user_id))
+        comment.save()
