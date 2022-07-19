@@ -5,4 +5,4 @@ app_name = "posts"
 
 router = routers.DefaultRouter()
 router.register("posts", posts_views.PostsViewSet)
-urlpatterns = router.urls
+urlpatterns = router.get_urls()
