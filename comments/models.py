@@ -11,12 +11,20 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True)
 
+    @property
+    def upvotes(self):
+        return len(CommentUpvote.objects.filter(comment=self))
+
+    @property
+    def downvotes(self):
+        return len(CommentDownvote.objects.filter(comment=self))
+
 
 class CommentUpvote(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
 
 
-class CommmentDownvote(models.Model):
+class CommentDownvote(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
