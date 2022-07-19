@@ -15,18 +15,18 @@ class Post(models.Model):
 
     @property
     def upvotes(self):
-        return len(Upvote.objects.filter(post=self))
+        return len(UpvotePost.objects.filter(post=self))
 
     @property
     def downvotes(self):
-        return len(Downvote.objects.filter(post=self))
+        return len(DownvotePost.objects.filter(post=self))
 
 
-class Upvote(models.Model):
+class UpvotePost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
 
 
-class Downvote(models.Model):
+class DownvotePost(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
