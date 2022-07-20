@@ -8,7 +8,7 @@ from comments.serializers.comments_serializers import CommentSerializer
 from posts.handlers.posts_handlers import PostsHandler
 from posts.models import Post
 from posts.serializers.posts_serializers import PostSerializer
-from posts.permissions import IsCreatorPermission
+from soc_media.permissions import IsCreatorPermission
 
 
 class PostsViewSet(viewsets.ModelViewSet):

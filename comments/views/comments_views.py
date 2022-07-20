@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from comments.handlers.comments_handler import CommentsHandler
 from comments.models import Comment
 from comments.serializers.comments_serializers import CommentSerializer
-from comments.permissions import IsCreatorPermission
+from soc_media.permissions import IsCreatorPermission
 
 
 class CommentsViewSet(viewsets.ModelViewSet):
