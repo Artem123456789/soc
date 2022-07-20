@@ -17,7 +17,7 @@ class PostsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsCreatorPermission]
 
     def perform_create(self, serializer):
-        serializer.save(creator=self.request.user)
+        serializer.save(user=self.request.user)
 
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk, *args, **kwargs):
