@@ -9,8 +9,6 @@ User = get_user_model()
 class RegistrationHandler:
 
     def register(self, input_entity: RegisterInputEntity) -> User:
-        if input_entity.password != input_entity.password_repeat:
-            raise ValidationError("Passwords does not match")
         user = User(username=input_entity.username)
         user.set_password(input_entity.password)
         user.save()

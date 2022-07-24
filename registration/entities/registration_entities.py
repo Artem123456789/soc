@@ -5,7 +5,6 @@ from dataclasses import dataclass
 class RegisterInputEntity:
     username: str
     password: str
-    password_repeat: str
 
 
 @dataclass
