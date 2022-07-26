@@ -37,10 +37,3 @@ class PostsViewSet(viewsets.ModelViewSet):
         PostsHandler().downvote(post, self.request.user)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @action(methods=["get"], detail=True)
-    def comments(self, request, pk, *args, **kwargs):
-        post = self.get_object()
-        response = PostsHandler().comments(post)
-
-        return Response(CommentSerializer(response, many=True).data, status=status.HTTP_200_OK)
