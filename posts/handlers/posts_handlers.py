@@ -1,5 +1,3 @@
-import os
-
 from comments.models import Comment
 from posts.models import Post, UpvotePost, DownvotePost
 from rest_framework.exceptions import APIException

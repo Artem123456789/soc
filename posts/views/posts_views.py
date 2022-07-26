@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
 
-from comments.serializers.comments_serializers import CommentSerializer
 from posts.handlers.posts_handlers import PostsHandler
 from posts.models import Post
 from posts.serializers.posts_serializers import PostSerializer
@@ -18,11 +17,6 @@ class PostsViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-    @action(methods=["post"], detail=False, permission_classes=[permissions.IsAuthenticated])
-    def bearer_check(self, request, pk, *args, **kwargs):
-        post = self.get_object()
-        PostsHandler().upvote(post, self.request.user)
 
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk, *args, **kwargs):
