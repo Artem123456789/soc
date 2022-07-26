@@ -19,6 +19,11 @@ class PostsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    @action(methods=["post"], detail=False, permission_classes=[permissions.IsAuthenticated])
+    def bearer_check(self, request, pk, *args, **kwargs):
+        post = self.get_object()
+        PostsHandler().upvote(post, self.request.user)
+
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk, *args, **kwargs):
         post = self.get_object()
