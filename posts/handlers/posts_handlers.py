@@ -3,7 +3,6 @@ from posts.models import Post, UpvotePost, DownvotePost
 from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
 
-from tags.models import Tag
 
 User = get_user_model()
 
