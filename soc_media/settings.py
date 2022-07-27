@@ -30,8 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-LOCAL_APPS = ["posts", "registration", "comments"]
-THIRD_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt"]
+LOCAL_APPS = ["posts", "registration", "comments", "chating"]
+THIRD_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt", "django_extensions"]
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -42,7 +42,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
