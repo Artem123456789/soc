@@ -25,6 +25,7 @@ urlpatterns = [
     path("posts/", include("posts.urls", namespace="posts")),
     path("registration/", include("registration.urls", namespace="registration")),
     path("comments/", include("comments.urls", namespace="comments")),
+    path("chating/", include("chating.urls", namespace="chating")),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh")
 ]

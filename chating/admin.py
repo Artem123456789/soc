@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from chating.models import Message, SentMessage, ReceivedMessage
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ["text"]
+
+
+@admin.register(SentMessage)
+class SentMessageAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ReceivedMessage)
+class ReceivedMessageAdmin(admin.ModelAdmin):
+    pass

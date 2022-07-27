@@ -4,5 +4,5 @@ from chating.views.chating_views import ChatingViewSet
 app_name = "chating"
 
 router = DefaultRouter()
-router.register(r"chating", ChatingViewSet)
+router.register("chating", ChatingViewSet)
 urlpatterns = router.get_urls()
