@@ -2,7 +2,6 @@ from rest_framework import serializers
 
 from comments.models import Comment
 from comments.serializers.comments_serializers import CommentSerializer
-from soc_media.serializers import BaseSerializer
 
 from posts.models import Post
 
@@ -16,4 +15,3 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ["id", "header", "text", "image", "user", "upvotes", "downvotes", "comments"]
-
