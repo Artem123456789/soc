@@ -9,6 +9,11 @@ class SendMessageInputEntity:
 
 @dataclass
 class GetChatInputEntity:
+    chat_user_username: str
+
+
+@dataclass
+class SentMessageEntity:
+    text: str
     sender_username: str
     receiver_username: str
-

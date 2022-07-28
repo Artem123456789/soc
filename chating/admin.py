@@ -1,11 +1,6 @@
 from django.contrib import admin
 
-from chating.models import Message, SentMessage, ReceivedMessage
-
-
-@admin.register(Message)
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ["text"]
+from chating.models import SentMessage, ReceivedMessage
 
 
 @admin.register(SentMessage)

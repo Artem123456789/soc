@@ -1,7 +1,7 @@
 from chating.entities.chating_entities import SendMessageInputEntity, GetChatInputEntity
 from django.contrib.auth import get_user_model
 
-from chating.models import Message, SentMessage, ReceivedMessage
+from chating.models import SentMessage, ReceivedMessage
 
 User = get_user_model()
 
@@ -9,19 +9,18 @@ User = get_user_model()
 class ChatingHandler:
 
     def send_message(self, input_entity: SendMessageInputEntity, from_user: User):
-        message = Message(text=input_entity.text)
-        message.save()
-
-        sent_message = SentMessage(message=message, user=from_user)
-        sent_message.save()
-
-        received_message = ReceivedMessage(message=message, user=User.objects.get(username=input_entity.to_username))
+        received_message = ReceivedMessage(to_user=User.objects.get(username=input_entity.to_username))
         received_message.save()
 
-    def get_chat(self, input_entity: GetChatInputEntity):
-        user_sender = User.objects.get(username=input_entity.sender_username)
-        user_receiver = User.objects.get(username=input_entity.receiver_username)
+        sent_message = SentMessage(text=input_entity.text, from_user=from_user, received_message=received_message)
+        sent_message.save()
 
-        messages_by_sender = SentMessage.objects.filter(user=user_sender)
-        messages_by_receiver = ReceivedMessage.objects.filter(user=user_receiver)
-        pass
+    def get_chat(self, input_entity: GetChatInputEntity, user_sender: User):
+        user_receiver = User.objects.get(username=input_entity.chat_user_username)
+
+        messages = SentMessage.objects.filter(from_user=user_sender,
+                                              received_message__to_user=user_receiver).union(
+            SentMessage.objects.filter(from_user=user_receiver,
+                                       received_message__to_user=user_sender)
+        ).order_by("created")
+        return messages
