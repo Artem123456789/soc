@@ -21,6 +21,7 @@ class GetChatInputSerializer(BaseSerializer):
 
 
 class SentMessageSerializer(BaseSerializer):
+    sent_at = serializers.DateTimeField(source="created")
     text = serializers.CharField(max_length=MAX_MESSAGE_TEXT_LEN)
     sender_username = serializers.SerializerMethodField()
     receiver_username = serializers.SerializerMethodField()
@@ -33,4 +34,3 @@ class SentMessageSerializer(BaseSerializer):
 
     def create(self, validated_data) -> SentMessageEntity:
         return SentMessageEntity(**validated_data)
-

@@ -1,3 +1,4 @@
+import datetime
 from dataclasses import dataclass
 
 
@@ -14,6 +15,7 @@ class GetChatInputEntity:
 
 @dataclass
 class SentMessageEntity:
+    sent_at: datetime.datetime
     text: str
     sender_username: str
     receiver_username: str
