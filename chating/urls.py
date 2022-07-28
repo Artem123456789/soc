@@ -1,8 +1,8 @@
-from rest_framework.routers import DefaultRouter
-from chating.views.chating_views import ChatingViewSet
+from chating.views.chating_views import send_message
+from django.urls import path
 
 app_name = "chating"
 
-router = DefaultRouter()
-router.register("chating", ChatingViewSet)
-urlpatterns = router.get_urls()
+urlpatterns = [
+    path("send_message/", send_message)
+]
