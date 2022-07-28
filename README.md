@@ -4,6 +4,7 @@
 
 1. Registration and JWT authorization
 2. CRUD actions with posts and comments
+3. Sending text messages
 
 
 ### How to deploy
