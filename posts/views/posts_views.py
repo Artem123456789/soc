@@ -19,6 +19,12 @@ class PostsViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
+    def upload_images(self, request, pk, *args, **kwargs):
+        post = self.get_object()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+    @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk, *args, **kwargs):
         post = self.get_object()
         PostsHandler().upvote(post, self.request.user)
