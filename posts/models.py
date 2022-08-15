@@ -10,7 +10,6 @@ class Post(models.Model):
 
     header = models.CharField(max_length=200, null=True, blank=True)
     text = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to="post_images/", default=None)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     @property
@@ -20,6 +19,11 @@ class Post(models.Model):
     @property
     def downvotes(self):
         return len(DownvotePost.objects.filter(post=self))
+
+
+class PostImage(models.Model):
+    image = models.ImageField(upload_to="post_images/", default=None)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=True, null=True)
 
 
 class UpvotePost(models.Model):
