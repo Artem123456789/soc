@@ -11,11 +11,11 @@ class CommentsHandler:
 
     def upvote(self, comment: Comment, user: User):
         user_upvote = CommentUpvote.objects.filter(user=user, comment=comment)
-        if len(user_upvote) > 0:
+        if user_upvote:
             raise APIException("User already is upvoted")
 
         user_downvote = CommentDownvote.objects.filter(user=user, comment=comment)
-        if len(user_downvote) > 0:
+        if user_downvote:
             user_downvote.delete()
 
         new_upvote = CommentUpvote(user=user, comment=comment)

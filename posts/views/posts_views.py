@@ -18,6 +18,10 @@ class PostsViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    def create(self, request, *args, **kwargs):
+        print("erer")
+        return super().create(request, *args, **kwargs)
+
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upvote(self, request, pk, *args, **kwargs):
         post = self.get_object()
