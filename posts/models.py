@@ -13,10 +13,6 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     @property
-    def images(self):
-        return
-
-    @property
     def upvotes(self):
         return len(UpvotePost.objects.filter(post=self))
 
