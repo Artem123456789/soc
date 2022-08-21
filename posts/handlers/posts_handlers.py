@@ -1,5 +1,5 @@
 from comments.models import Comment
-from posts.models import Post, UpvotePost, DownvotePost
+from posts.models import Post, UpvotePost, DownvotePost, PostImage
 from rest_framework.exceptions import APIException
 from django.contrib.auth import get_user_model
 
@@ -8,6 +8,11 @@ User = get_user_model()
 
 
 class PostsHandler:
+
+    def upload_images(self, post: Post, images):
+        for image in images:
+            post_image = PostImage(image=image, post=post)
+            post_image.save()
 
     def upvote(self, post: Post, user: User):
         user_upvote = UpvotePost.objects.filter(user=user, post=post)

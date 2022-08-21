@@ -21,6 +21,8 @@ class PostsViewSet(viewsets.ModelViewSet):
     @action(methods=["post"], detail=True, permission_classes=[permissions.IsAuthenticated])
     def upload_images(self, request, pk, *args, **kwargs):
         post = self.get_object()
+        PostsHandler().upload_images(post, dict(request.data.lists())["images"])
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
